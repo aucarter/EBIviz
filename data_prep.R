@@ -20,8 +20,6 @@ dir.create(plot.dir, showWarnings = F)
 ## Cause-specific mortality
 # Read data
 dt <- fread(data.path)
-birth.dt <- fread(paste0(data.dir, "births.csv"))[sex_id == 3]
-setnames(birth.dt, c("year_id", "location_name"), c("year", "location"))
 
 # Calculate other category
 all.dt <- copy(dt[cause == "All causes"])
@@ -39,13 +37,6 @@ dpt.hold <- dt[cause %in% dpt.causes]
 dpt.dt <- dt[cause %in% dpt.causes, .(val = sum(val)), by = .(age, metric, year, measure, location)]
 dpt.dt[, cause := "DPT"]
 bound.dt <- rbind(bound.dt[!(cause %in% dpt.causes)], dpt.dt, fill = T)
-
-# Switch rate to have births in denominator
-births.merge <- merge(bound.dt[metric == "Number"], birth.dt[, .(location, year, population)], by = c("year", "location"))
-births.merge[, val := val / population]
-births.merge[, population := NULL]
-births.merge[, metric := "Rate"]
-bound.dt <- rbind(bound.dt[metric == "Number"], births.merge)
 
 # Calculate 5 year averages
 bound.dt[year %%5 != 0, period := paste0((year - year%%5), "-", (year - year%%5 + 5))]

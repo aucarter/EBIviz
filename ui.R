@@ -2,37 +2,11 @@
 library(shiny);library(data.table); library(ggplot2); library(RColorBrewer); library(plotly); library(shinythemes)
 
 # Paths
-data.dir <- "data/"
-data.path <- paste0(data.dir, "GBD16_results_all2.csv")
+data.dir <- "data/prepped/"
+data.path <- paste0(data.dir, "mort.csv")
 
 # Data
 dt <- fread(data.path)
-birth.dt <- fread(paste0(data.dir, "births.csv"))[sex_id == 3]
-setnames(birth.dt, c("year_id", "location_name"), c("year", "location"))
-
-# Calculate other category
-all.dt <- copy(dt[cause == "All causes"])
-combined.dt <- dt[cause != "All causes", .(sum_val = sum(val)), by = .(age, metric, year, measure, location)]
-merge.dt <- merge(all.dt, combined.dt, by = c("age", "metric", "year", "measure", "location"))                 
-merge.dt[, diff := val - sum_val]
-merge.dt[, c("val", "upper", "lower", "sum_val") := NULL]
-setnames(merge.dt, "diff", "val")
-merge.dt[, cause := "Other"]
-bound.dt <- rbind(dt, merge.dt, fill = T)
-
-# Combine diphtheria, whooping cough, tetanus into DPT
-dpt.causes <- c("Diphtheria", "Whooping cough", "Tetanus")
-dpt.hold <- dt[cause %in% dpt.causes]
-dpt.dt <- dt[cause %in% dpt.causes, .(val = sum(val)), by = .(age, metric, year, measure, location)]
-dpt.dt[, cause := "DPT"]
-bound.dt <- rbind(bound.dt[!(cause %in% dpt.causes)], dpt.dt, fill = T)
-
-# Switch rate to have births in denominator
-births.merge <- merge(bound.dt[metric == "Number"], birth.dt[, .(location, year, population)], by = c("year", "location"))
-births.merge[, val := val / population]
-births.merge[, population := NULL]
-births.merge[, metric := "Rate"]
-bound.dt <- rbind(bound.dt[metric == "Number"], births.merge)
 
 # Define UI for application that plots random distributions 
 shinyUI(
