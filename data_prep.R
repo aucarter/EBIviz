@@ -1,11 +1,11 @@
 ### Data Prep
-library(data.table)
+library(data.table); library(RJSONIO); library(ggplot2); library(plotly)
 
 ## Paths
 # In
 data.dir <- "data/raw/"
 data.path <- paste0(data.dir, "GBD16_results_all2.csv")
-ebi.path <- paste0(data.dir, "20180731_STAT Compiler All Countries (Prepped).csv")
+ebi.path <- paste0("data/indicator_list.csv")
 dpt.path <- paste0(data.dir, "dpt3.csv")
 
 # Out
@@ -58,7 +58,34 @@ write.csv(mort.dt, mort.out, row.names = F)
 
 
 ## EBI
-ebi.dt <- fread(ebi.path)
+indicator.table <- data.table(read.csv(ebi.path))
+indicator.list <- unique(indicator.table$IndicatorId)
+
+prep.ebi <- function(indicator.list, cause.map = NULL) {
+  # Import DHS Indicator data for TFR for each survey
+  
+  json_file <- fromJSON("https://api.dhsprogram.com/rest/dhs/data/FE_FRTR_W_TFR?perpage=500")
+  
+  
+  pull.indicator <- function(indicator) {
+    string <- paste0("https://api.dhsprogram.com/rest/dhs/data/", indicator, "?perpage=500")
+    json_file <- fromJSON(string)
+    json_data <- lapply(json_file$Data, function(x) { unlist(x) })
+    APIdata <- as.data.table(do.call("rbind", json_data),stringsAsFactors=FALSE)
+    return(APIdata)
+  }
+  
+  dt <- rbindlist(lapply(indicator.list, pull.indicator))
+  dt[, Year := as.integer(SurveyYear)]
+  dt[, Value := as.numeric(Value)]  
+  return(dt[])
+}
+
+ebi.raw <- prep.ebi(indicator.list)
+ebi.subset <- ebi.raw[, .(IndicatorId, Year, Value, CountryName)]
+ebi.dt <- merge(ebi.subset, indicator.table)
+setnames(ebi.dt, c("CountryName", "Year", "Value"), c("location", "year", "value"))
+ebi.dt[, IndicatorId := NULL]
 
 # DPT3 coverage from WHO
 dpt.dt <- fread(dpt.path, header = T)
