@@ -4,25 +4,36 @@ library(shiny);library(data.table); library(ggplot2); library(RColorBrewer); lib
 shinyServer(function(input, output) {
   fn.plot <- function(input) {
     ## Arguments
+    # cmetric <- "Rate"
+    # cage <- input$cage
+    # cmeasure <- "Deaths"
+    # cloc <- input$cloc
+    # start.year <- input$range[1]
+    # end.year <- input$range[2]
+    # ccause <- input$ccause
+    # bar <- input$bar
+    
     cmetric <- "Rate"
-    cage <- input$cage
+    cage <- "Under 5"
     cmeasure <- "Deaths"
-    cloc <- input$cloc
-    start.year <- input$range[1]
-    end.year <- input$range[2]
-    ccause <- input$ccause
+    cloc <- "Rwanda"
+    start.year <- 2000
+    end.year <- 2015
+    ccause <- "Nutritional deficiencies"
+    bar <- F
+    
     
     all.plots <- T
     cause.plots <- T
-    bar <- input$bar
+    
     
     
     
     ## Paths
-    data.dir <- "data/"
-    data.path <- paste0(data.dir, "GBD16_results_all2.csv")
-    policy.path <- paste0(data.dir, "ebi_policies.csv")
-    ebi.path <- paste0(data.dir, "20180731_STAT Compiler All Countries (Prepped).csv")
+    data.dir <- "data/prepped/"
+    mort.path <- paste0(data.dir, "mort.csv")
+    policy.path <- paste0(data.dir, "timeline.csv")
+    ebi.path <- paste0(data.dir, "ebi.csv")
     
     plot.dir <- "C:/Users/AustinC/OneDrive - bgC3/Documents/plots/U5M_plots/ebi_summary/"
     dir.create(plot.dir, showWarnings = F)
@@ -30,37 +41,9 @@ shinyServer(function(input, output) {
     ### Code
     ## Data prep
     # Read data
-    dt <- fread(data.path)[year %in% start.year:end.year]
+    mort.dt <- fread(mort.path)[year %in% start.year:end.year]
     policy.dt <- fread(policy.path)[start_year %in% start.year:end.year & outlier == 0]
     ebi.dt <- fread(ebi.path)[!is.na(value) & year %in% start.year:(end.year + 1)]
-    
-    # Calculate other category
-    all.dt <- copy(dt[cause == "All causes"])
-    combined.dt <- dt[cause != "All causes", .(sum_val = sum(val)), by = .(age, metric, year, measure, location)]
-    merge.dt <- merge(all.dt, combined.dt, by = c("age", "metric", "year", "measure", "location"))                 
-    merge.dt[, diff := val - sum_val]
-    merge.dt[, c("val", "upper", "lower", "sum_val") := NULL]
-    setnames(merge.dt, "diff", "val")
-    merge.dt[, cause := "Other"]
-    bound.dt <- rbind(dt, merge.dt, fill = T)
-    
-    # Combine diphtheria, whooping cough, tetanus into DPT
-    dpt.causes <- c("Diphtheria", "Whooping cough", "Tetanus")
-    dpt.hold <- dt[cause %in% dpt.causes]
-    dpt.dt <- dt[cause %in% dpt.causes, .(val = sum(val)), by = .(age, metric, year, measure, location)]
-    dpt.dt[, cause := "DPT"]
-    bound.dt <- rbind(bound.dt[!(cause %in% dpt.causes)], dpt.dt, fill = T)
-    
-    # Calculate 5 year averages
-    bound.dt[year %%5 != 0, period := paste0((year - year%%5), "-", (year - year%%5 + 5))]
-    bound.dt[year %%5 == 0, period := paste0((year - year%%5 - 5), "-", (year - year%%5))]
-    period.dt <- bound.dt[, .(five_avg = mean(val)), by = .(age, metric, period, measure, location, cause)]
-    mort.dt <- merge(bound.dt, period.dt)
-    
-    # Nepal DPT3 coverage from WHO
-    dpt3 <- data.table(location = "Nepal", Category = "DPT", Indicator = "DPT3 Vaccine", year = 2017:1980,
-                       value = c(90, 87, 91, 92, 92, 90, 92, 82, 89, 82, 82, 89, 75, 80, 78, 72, 72, 74, 65, 71, 78, 65, 54, 54, 51, 49, 46, 43, 44, 45, 46, 38, 32, 27, 23, 18, 16, 8))
-    ebi.dt <- rbind(ebi.dt, dpt3[year %in% start.year:end.year])
     
     # Order policies
     policy.dt <- policy.dt[order(start_year)]
@@ -122,11 +105,11 @@ shinyServer(function(input, output) {
         gg <- ggplot() + geom_area(data = subset.mort[cause != "All causes" & year %in% seq(start.year, end.year, 5)], stat = "identity", aes(x = year, y = val, fill = cause))    
       }
       # Policies
-      if(nrow(subset.policy) > 0) {
-        policy.y <- 1.1 * rev(seq(subset.mort[cause == "All causes" & year == max(policy.dt$start_year), val], max(subset.mort$val), length = nrow(policy.dt)))
-        gg <- gg + geom_segment(data = policy.dt, aes(x = start_year, y = 0, xend = start_year, yend = policy.y - 5), linetype = "dashed") +
-          geom_text(data = policy.dt, aes(x = start_year, y = policy.y, label = policy_name), size = 3, hjust = "left", nudge_x = 0.05)
-      }
+      # if(nrow(subset.policy) > 0) {
+      #   policy.y <- 1.1 * rev(seq(subset.mort[cause == "All causes" & year == max(policy.dt$start_year), val], max(subset.mort$val), length = nrow(policy.dt)))
+      #   gg <- gg + geom_segment(data = policy.dt, aes(x = start_year, y = 0, xend = start_year, yend = policy.y - 5), linetype = "dashed") +
+      #     geom_text(data = policy.dt, aes(x = start_year, y = policy.y, label = policy_name), size = 3, hjust = "left", nudge_x = 0.05)
+      # }
       # Format
       gg <- gg + ggtitle(paste0(cage, " mortality in ", cloc, ":\n", abs(decline), "% ",ifelse(decline > 0, "decline", "increase"), " ", start.year, "-", end.year,  ifelse(sig == 1, "*", ""))) + ylab(paste(cmeasure, cmetric)) + xlab("Year") + labs(fill = "Cause") + theme_bw() + 
         theme(text = element_text(size=15), legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + expand_limits(y = 1.2 * max(subset.mort$val)) +
