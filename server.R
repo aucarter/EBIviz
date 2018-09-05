@@ -4,23 +4,23 @@ library(shiny);library(data.table); library(ggplot2); library(RColorBrewer); lib
 shinyServer(function(input, output) {
   fn.plot <- function(input) {
     ## Arguments
-    cmetric <- "Rate"
-    cage <- input$cage
-    cmeasure <- "Deaths"
-    cloc <- input$cloc
-    start.year <- input$range[1]
-    end.year <- input$range[2]
-    ccause <- input$ccause
-    bar <- input$bar
-    
     # cmetric <- "Rate"
-    # cage <- "Under 5"
+    # cage <- input$cage
     # cmeasure <- "Deaths"
-    # cloc <- "Rwanda"
-    # start.year <- 2000
-    # end.year <- 2015
-    # ccause <- "Nutritional deficiencies"
-    # bar <- F
+    # cloc <- input$cloc
+    # start.year <- input$range[1]
+    # end.year <- input$range[2]
+    # ccause <- input$ccause
+    # bar <- input$bar
+
+    cmetric <- "Rate"
+    cage <- "Under 5"
+    cmeasure <- "Deaths"
+    cloc <- "Rwanda"
+    start.year <- 2000
+    end.year <- 2015
+    ccause <- "All causes"
+    bar <- F
     
     
     all.plots <- T
@@ -42,7 +42,7 @@ shinyServer(function(input, output) {
     ## Data prep
     # Read data
     mort.dt <- fread(mort.path)[year %in% start.year:end.year]
-    policy.dt <- fread(policy.path)[start_year %in% start.year:end.year & outlier == 0]
+    policy.dt <- fread(policy.path)[location == cloc & start_year %in% start.year:end.year & outlier == 0]
     ebi.dt <- fread(ebi.path)[!is.na(value) & year %in% start.year:(end.year + 1)]
     
     # Order policies
@@ -106,18 +106,17 @@ shinyServer(function(input, output) {
       }
       # Policies
       if(nrow(subset.policy) > 0) {
-        policy.y <- 1.1 * rev(seq(subset.mort[cause == "All causes" & year == max(policy.dt$start_year), val], max(subset.mort$val), length = nrow(policy.dt)))
+        policy.y <- 1.3 * rev(seq(subset.mort[cause == "All causes" & year == max(policy.dt$start_year), val], max(subset.mort$val), length = nrow(policy.dt)))
         gg <- gg + geom_segment(data = policy.dt, aes(x = start_year, y = 0, xend = start_year, yend = policy.y - 5), linetype = "dashed") +
           geom_text(data = policy.dt, aes(x = start_year, y = policy.y, label = policy_name), size = 3, hjust = "left", nudge_x = 0.05)
       }
       # Format
       gg <- gg + ggtitle(paste0(cage, " mortality in ", cloc, ":\n", abs(decline), "% ",ifelse(decline > 0, "decline", "increase"), " ", start.year, "-", end.year,  ifelse(sig == 1, "*", ""))) + ylab(paste(cmeasure, cmetric)) + xlab("Year") + labs(fill = "Cause") + theme_bw() + 
-        theme(text = element_text(size=15), legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + expand_limits(y = 1.2 * max(subset.mort$val)) +
+        theme(text = element_text(size=15), legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + expand_limits(y = 1.3 * max(subset.mort$val)) +
         scale_fill_manual(values = color) + guides(fill = guide_legend(reverse = T))
       if(sig == 1) {
         gg <- gg + labs(caption="* statistically significant change over the time period")
       }
-      gg <- gg + theme_bw()
       # print(ggplotly(gg))
       print(gg)
     }
@@ -156,7 +155,6 @@ shinyServer(function(input, output) {
       if(sig == 1) {
         gg <- gg + labs(caption="* statistically significant change over the time period")
       }
-      gg <- gg + theme_bw()
       # gg <- ggplotly(gg)
       gg
     }
