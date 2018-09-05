@@ -1,1 +1,28 @@
-IndicatorId,Category,IndicatorCH_DIAT_C_ADV,Diarrheal diseases,Treatment of diarrhea: Taken to a health facilityCH_DIAT_C_RHF,Diarrheal diseases,Treatment of diarrhea: Recommended home fluids (RHF) at homeCH_DIAT_C_ORT,Diarrheal diseases,Treatment of diarrhea: Either ORS or RHFCH_DIAT_C_ZNC,Diarrheal diseases,Treatment of diarrhea: Zinc supplementsCH_ARIS_C_ADV,Lower respiratory infections,Children with symptoms of ARI taken to a health facilityCH_ARIS_C_ABI,Lower respiratory infections,Children with symptoms of ARI who received antibioticsCH_FEVR_C_FEV,Malaria,Children with fever in the last two weeksCH_FEVT_C_ADV,Malaria,Advice or treatment for fever sought from a health facility or providerCH_FEVT_C_AML,Malaria,Child took antimalarial drugs for feverCH_FEVT_C_ABI,Malaria,Child took antibiotic drugs for feverCN_BRFS_C_EXB,Nutritional deficiencies,Children exclusively breastfedCN_BRFS_C_CMP,Nutritional deficiencies,Children breastfeeding and consuming complementary foodsCH_VACS_C_BCG,Vaccine preventable disease,BCG vaccination receivedCH_VACS_C_MSL,Measles,Measles vaccination receivedCH_VACS_C_BAS,DPT,Received all 8 basic vaccinationsHA_KMTC_W_BFD,HIV/AIDS,Knowledge of prevention of mother to child transmission of HIV [Women]HA_CATH_W_ATR,HIV/AIDS,Pregnant women tested for HIV during ANC or labor and receiving the resultsRH_ANCP_W_CHW,Neonatal disorders,Antenatal care provider: Community health workerRH_ANCN_W_N4P,Neonatal disorders,Antenatal visits for pregnancy: 4+ visitsRH_ANCC_W_IRN,Neonatal disorders,Antenatal care content: Received iron tablets or syrupRH_TTIJ_W_PRT,DPT,Tetanus protection at birthRH_DELA_C_SKP,Neonatal disorders,Assistance during delivery from a skilled providerRH_PCCT_C_DY2,Neonatal disorders,Newborn's first postnatal checkup in the first two days after birthRH_PCCP_C_DOC,Neonatal disorders,Provider of newborns' first postnatal checkup: Doctor/nurse/midwifeML_NETP_H_ITN,Malaria,Households with at least one insecticide-treated mosquito net (ITN)ML_IRSM_H_IRS,Malaria,Households with indoor residual spraying (IRS) in last 12 monthsML_IRSM_H_IIR,Malaria,Households with at least one insecticide-treated mosquito net(ITN) and/or indoor residual spraying (IRS) in the past 12 months
+IndicatorId,Category,Indicator,outlier
+CH_DIAT_C_ADV,Diarrheal diseases,Treatment of diarrhea: Taken to a health facility,0
+CH_DIAT_C_RHF,Diarrheal diseases,Treatment of diarrhea: Recommended home fluids (RHF) at home,0
+CH_DIAT_C_ORT,Diarrheal diseases,Treatment of diarrhea: Either ORS or RHF,0
+CH_DIAT_C_ZNC,Diarrheal diseases,Treatment of diarrhea: Zinc supplements,0
+CH_ARIS_C_ADV,Lower respiratory infections,Children with symptoms of ARI taken to a health facility,0
+CH_ARIS_C_ABI,Lower respiratory infections,Children with symptoms of ARI who received antibiotics,0
+CH_FEVR_C_FEV,Malaria,Children with fever in the last two weeks,1
+CH_FEVT_C_ADV,Malaria,Advice or treatment for fever sought from a health facility or provider,0
+CH_FEVT_C_AML,Malaria,Child took antimalarial drugs for fever,0
+CH_FEVT_C_ABI,Malaria,Child took antibiotic drugs for fever,0
+CN_BRFS_C_EXB,Nutritional deficiencies,Children exclusively breastfed,0
+CN_BRFS_C_CMP,Nutritional deficiencies,Children breastfeeding and consuming complementary foods,0
+CH_VACS_C_BCG,Vaccine preventable disease,BCG vaccination received,0
+CH_VACS_C_MSL,Measles,Measles vaccination received,0
+CH_VACS_C_BAS,DPT,Received all 8 basic vaccinations,0
+HA_KMTC_W_BFD,HIV/AIDS,Knowledge of prevention of mother to child transmission of HIV [Women],0
+HA_CATH_W_ATR,HIV/AIDS,Pregnant women tested for HIV during ANC or labor and receiving the results,0
+RH_ANCP_W_CHW,Neonatal disorders,Antenatal care provider: Community health worker,0
+RH_ANCN_W_N4P,Neonatal disorders,Antenatal visits for pregnancy: 4+ visits,0
+RH_ANCC_W_IRN,Neonatal disorders,Antenatal care content: Received iron tablets or syrup,0
+RH_TTIJ_W_PRT,DPT,Tetanus protection at birth,0
+RH_DELA_C_SKP,Neonatal disorders,Assistance during delivery from a skilled provider,0
+RH_PCCT_C_DY2,Neonatal disorders,Newborn's first postnatal checkup in the first two days after birth,0
+RH_PCCP_C_DOC,Neonatal disorders,Provider of newborns' first postnatal checkup: Doctor/nurse/midwife,0
+ML_NETP_H_ITN,Malaria,Households with at least one insecticide-treated mosquito net (ITN),0
+ML_IRSM_H_IRS,Malaria,Households with indoor residual spraying (IRS) in last 12 months,0
+ML_IRSM_H_IIR,Malaria,Households with at least one insecticide-treated mosquito net(ITN) and/or indoor residual spraying (IRS) in the past 12 months,1

@@ -50,7 +50,7 @@ write.csv(mort.dt, mort.out, row.names = F)
 
 ## EBI
 indicator.table <- data.table(read.csv(ebi.path))
-indicator.list <- unique(indicator.table$IndicatorId)
+indicator.list <- unique(indicator.table[outlier == 0]$IndicatorId)
 
 prep.ebi <- function(indicator.list, cause.map = NULL) {
   # Import DHS Indicator data for TFR for each survey
@@ -73,10 +73,10 @@ prep.ebi <- function(indicator.list, cause.map = NULL) {
 }
 
 ebi.raw <- prep.ebi(indicator.list)
-ebi.subset <- ebi.raw[, .(IndicatorId, Year, Value, CountryName)]
+ebi.subset <- ebi.raw[!grepl('Five', ByVariableLabel), .(IndicatorId, Year, Value, CountryName)]
 ebi.dt <- merge(ebi.subset, indicator.table)
 setnames(ebi.dt, c("CountryName", "Year", "Value"), c("location", "year", "value"))
-ebi.dt[, IndicatorId := NULL]
+ebi.dt[, c("IndicatorId", "outlier") := NULL]
 
 # DPT3 coverage from WHO
 dpt.dt <- fread(dpt.path, header = T)

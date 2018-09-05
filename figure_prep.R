@@ -14,8 +14,8 @@ gg <- ggplot(data = plot.dt, aes(x = year, y = mean * 1000)) +
   xlab("Year") +
   ylab("Deaths per 1000 live births") +
   ggtitle("Under-5 Mortality Rate in Rwanda") +
-  theme(plot.title = element_text(hjust = 0.5)) + 
-  theme_bw()
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5))
 print(gg)
 
 ## Neonatal mortality line plot
@@ -27,8 +27,8 @@ gg <- ggplot(data = plot.dt, aes(x = year, y = mean * 1000)) +
   xlab("Year") +
   ylab("Deaths per 1000 live births") +
   ggtitle("Neonatal Mortality Rate in Rwanda") +
-  theme(plot.title = element_text(hjust = 0.5)) + 
-  theme_bw()
+  theme_bw()+
+  theme(plot.title = element_text(hjust = 0.5), panel.grid.major.x = element_blank())
 print(gg)
 
 ## Bar plot split by neonatal and other
@@ -41,10 +41,9 @@ plot.dt <- all.dt[location == "Rwanda" & age != "Under 5" & year %in% 2000:2015 
 gg <- ggplot(data = plot.dt, aes(x = year, y = mean * 1000)) + geom_bar(aes(fill = age), stat = "identity") +
   geom_text(aes(label = round(mean * 1000)), position = position_stack(vjust = 0.5)) +
   xlab("Year") + ylab("Deaths per 1000 live births") +
-  theme(legend.position = "bottom", legend.title = element_blank())+
   ggtitle("Neonatal and Non-Neonatal Mortality Rate in Rwanda") +
-  theme(plot.title = element_text(hjust = 0.5)) + 
-  theme_bw()
+  theme_bw() +
+  theme(legend.position = "bottom", legend.title = element_blank(), plot.title = element_text(hjust = 0.5))
 print(gg)
 
 ## Proportion of U5M from each cause
