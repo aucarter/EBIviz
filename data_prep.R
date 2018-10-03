@@ -89,9 +89,11 @@ write.csv(ebi.dt, ebi.out, row.names = F)
 
 ### Stats
 # Change between 2000 and 2015
-start.val <- mort.dt[metric == "Rate" & age == "Under 5" & year == start.year & measure == "Deaths" & location == cloc, .(cause, val)]
+start.year <- 2000
+end.year <- 2015
+start.val <- mort.dt[metric == "Rate" & age == "Under 5" & year == start.year & measure == "Deaths", .(location, cause, val)]
 setnames(start.val, "val", "start_val")
-end.val <- mort.dt[metric == "Rate" & age == "Under 5" & year == end.year & measure == "Deaths" & location == cloc, .(cause, val)]
+end.val <- mort.dt[metric == "Rate" & age == "Under 5" & year == end.year & measure == "Deaths", .(location, cause, val)]
 setnames(end.val, "val", "end_val")
 change.dt <- merge(start.val, end.val)
 change.dt[, change := (start_val - end_val) / start_val * 100]

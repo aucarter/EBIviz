@@ -31,8 +31,8 @@ shinyUI(
     # Cause
     selectInput(inputId = "ccause", 
                 label = "Cause", 
-                choices = sort(unique(bound.dt$cause)),
-                selected = "All causes"),
+                choices = c("All causes (per 1000 live births)", sort(unique(bound.dt$cause))),
+                selected = "All causes (per 1000 live births)"),
     
     # Year range
     sliderInput(inputId = "range", 

@@ -1,106 +1,106 @@
-"location","cause","2010","2015","sig"
-"Bangladesh","All causes",146649.894109,121037.650977,1
+"location","cause","2000","2015","sig"
+"Bangladesh","All causes",1730.19711905,829.020251747,1
 "Bangladesh","DPT",NA,NA,0
-"Bangladesh","Diarrheal diseases",3870.08045491,4936.9404636,0
-"Bangladesh","Diphtheria",0.00876105103076,0.0327152258223,0
-"Bangladesh","HIV/AIDS",0.1881616575,63.7963726925,0
-"Bangladesh","Lower respiratory infections",23292.5308519,24476.0459604,0
-"Bangladesh","Malaria",0.589708323464,2.92612278448,0
-"Bangladesh","Measles",156.034017038,219.972889825,0
-"Bangladesh","Meningitis",514.663241551,1398.27357664,0
-"Bangladesh","Neonatal disorders",67162.9173431,61153.6707701,1
-"Bangladesh","Nutritional deficiencies",3442.24994041,4095.15982059,0
+"Bangladesh","Diarrheal diseases",97.5993202061,33.8144667627,1
+"Bangladesh","Diphtheria",0.0376349524529,0.0327152258223,1
+"Bangladesh","HIV/AIDS",0.000843640958923,0.436958950569,0
+"Bangladesh","Lower respiratory infections",353.084019061,167.643188877,1
+"Bangladesh","Malaria",0.00503190470591,0.0200418219278,0
+"Bangladesh","Measles",14.5340669294,1.50665498734,1
+"Bangladesh","Meningitis",5.92809519595,9.57716134745,0
+"Bangladesh","Neonatal disorders",633.233926811,418.858356289,1
+"Bangladesh","Nutritional deficiencies",39.1375365084,28.0488789895,1
 "Bangladesh","Other",NA,NA,0
-"Bangladesh","Tetanus",0.993858067054,4.24257684285,0
-"Bangladesh","Tuberculosis",31.7518736366,36.8743763378,0
-"Bangladesh","Whooping cough",0.960777546171,28.1453311545,0
-"Cambodia","All causes",15234.4802531,16216.4897315,0
+"Bangladesh","Tetanus",7.1563692135,4.24257684285,1
+"Bangladesh","Tuberculosis",1.31208844024,0.252562772888,1
+"Bangladesh","Whooping cough",2.86280928846,28.1453311545,0
+"Cambodia","All causes",1911.02594733,863.766524884,1
 "Cambodia","DPT",NA,NA,0
-"Cambodia","Diarrheal diseases",443.191280323,563.325807501,0
-"Cambodia","Diphtheria",0.00970746224023,0.0369041921937,0
-"Cambodia","HIV/AIDS",95.3059209975,119.487500147,0
-"Cambodia","Lower respiratory infections",5098.8963939,5381.85642434,0
-"Cambodia","Malaria",110.072437826,806.411362389,0
-"Cambodia","Measles",78.7719877501,21.0895619156,1
-"Cambodia","Meningitis",130.632459287,350.486136558,0
-"Cambodia","Neonatal disorders",5074.29453823,6252.42399047,0
-"Cambodia","Nutritional deficiencies",46.3657438357,111.944992382,0
+"Cambodia","Diarrheal diseases",91.2344039944,30.0053823717,1
+"Cambodia","Diphtheria",0.0998848260246,0.0369041921937,1
+"Cambodia","HIV/AIDS",10.8542366939,6.36446632274,1
+"Cambodia","Lower respiratory infections",662.714286326,286.662989219,1
+"Cambodia","Malaria",13.2455075435,42.9532624908,0
+"Cambodia","Measles",40.5935416926,1.12332927216,1
+"Cambodia","Meningitis",13.6452548643,18.6685403072,0
+"Cambodia","Neonatal disorders",399.335222207,333.033512909,1
+"Cambodia","Nutritional deficiencies",6.08194900385,5.96271687945,1
 "Cambodia","Other",NA,NA,0
-"Cambodia","Tetanus",3.44395296097,5.10900301292,0
-"Cambodia","Tuberculosis",13.3470495519,16.4749363088,0
-"Cambodia","Whooping cough",0.928216607513,25.2821950163,0
-"Ethiopia","All causes",189296.299348,179014.800708,1
+"Cambodia","Tetanus",44.9678956969,5.10900301292,1
+"Cambodia","Tuberculosis",2.62089567025,0.877532605312,1
+"Cambodia","Whooping cough",4.07076286555,25.2821950163,0
+"Ethiopia","All causes",3000.13535876,1204.23553407,1
 "Ethiopia","DPT",NA,NA,0
-"Ethiopia","Diarrheal diseases",19176.1720919,22236.674307,0
-"Ethiopia","Diphtheria",0.310605920297,0.629110324265,0
-"Ethiopia","HIV/AIDS",2369.30149538,916.482217045,1
-"Ethiopia","Lower respiratory infections",28464.6532027,28213.4507822,1
-"Ethiopia","Malaria",444.942496167,1169.13905525,0
-"Ethiopia","Measles",3244.15388501,11425.4622844,0
-"Ethiopia","Meningitis",5575.14956684,9073.63575479,0
-"Ethiopia","Neonatal disorders",57742.7252217,68415.3267453,0
-"Ethiopia","Nutritional deficiencies",11864.3695386,15051.1785362,0
+"Ethiopia","Diarrheal diseases",261.447539251,149.586476951,1
+"Ethiopia","Diphtheria",1.56244301527,0.629110324265,1
+"Ethiopia","HIV/AIDS",55.7101181211,6.16519107772,1
+"Ethiopia","Lower respiratory infections",392.507167729,189.792351449,1
+"Ethiopia","Malaria",42.0728583039,7.86481781965,1
+"Ethiopia","Measles",207.396421355,76.8592743255,1
+"Ethiopia","Meningitis",63.1129623771,61.0384982464,1
+"Ethiopia","Neonatal disorders",648.403855587,460.231037967,1
+"Ethiopia","Nutritional deficiencies",109.279516042,101.249527699,1
 "Ethiopia","Other",NA,NA,0
-"Ethiopia","Tetanus",7.0010029973,12.183860547,0
-"Ethiopia","Tuberculosis",1789.32596208,2071.25216835,0
-"Ethiopia","Whooping cough",7.49117194319,166.792367042,0
-"Nepal","All causes",27768.0044322,34288.4080894,0
+"Ethiopia","Tetanus",21.9730338215,12.183860547,1
+"Ethiopia","Tuberculosis",21.5887440899,13.9333476968,1
+"Ethiopia","Whooping cough",11.2489514129,166.792367042,0
+"Nepal","All causes",1409.27774228,871.450979196,1
 "Nepal","DPT",NA,NA,0
-"Nepal","Diarrheal diseases",1498.29306822,1763.27645532,0
-"Nepal","Diphtheria",0.00794643100699,0.0291017619346,0
-"Nepal","HIV/AIDS",1.0163941075,260.115093212,0
-"Nepal","Lower respiratory infections",5856.76684008,7402.15511286,0
-"Nepal","Malaria",14.0527680871,939.650266098,0
-"Nepal","Measles",65.3864732744,137.853028342,0
-"Nepal","Meningitis",368.852820478,1008.21836158,0
-"Nepal","Neonatal disorders",11785.1383124,16518.9125109,0
-"Nepal","Nutritional deficiencies",318.109799513,573.745360435,0
+"Nepal","Diarrheal diseases",151.686320638,44.8142412904,1
+"Nepal","Diphtheria",0.0290293133414,0.0291017619346,0
+"Nepal","HIV/AIDS",0.0579249167365,6.6109092056,0
+"Nepal","Lower respiratory infections",318.490227539,188.128165777,1
+"Nepal","Malaria",0.493728008821,23.8815153611,0
+"Nepal","Measles",30.6161074623,3.50357929188,1
+"Nepal","Meningitis",18.4164412475,25.62419568,0
+"Nepal","Neonatal disorders",453.268121123,419.83350307,1
+"Nepal","Nutritional deficiencies",17.3274776758,14.5819238635,1
 "Nepal","Other",NA,NA,0
-"Nepal","Tetanus",10.2896382691,26.6317689412,0
-"Nepal","Tuberculosis",32.7296725227,74.3097938511,0
-"Nepal","Whooping cough",1.62614469875,39.5024820955,0
-"Peru","All causes",12660.7355315,15348.5187806,0
+"Nepal","Tetanus",33.6764735875,26.6317689412,1
+"Nepal","Tuberculosis",2.37502937766,1.88860743977,1
+"Nepal","Whooping cough",2.6502480175,39.5024820955,0
+"Peru","All causes",713.554821864,446.403229894,1
 "Peru","DPT",NA,NA,0
-"Peru","Diarrheal diseases",324.910319726,400.057969855,0
-"Peru","Diphtheria",0.00564287640364,0.0273413287177,0
-"Peru","HIV/AIDS",3.4072224525,4.716105325,0
-"Peru","Lower respiratory infections",2048.90002723,2658.25125627,0
-"Peru","Malaria",0.326279027755,3.082964654,0
-"Peru","Measles",0,0.0303396565761,0
-"Peru","Meningitis",98.9550456507,285.033833082,0
-"Peru","Neonatal disorders",4551.77528224,5699.94585873,0
-"Peru","Nutritional deficiencies",192.313954265,260.699656875,0
+"Peru","Diarrheal diseases",35.3015810591,11.6354660955,1
+"Peru","Diphtheria",0.00908115300007,0.0273413287177,0
+"Peru","HIV/AIDS",0.654265456341,0.137165330394,1
+"Peru","Lower respiratory infections",147.19623894,77.3137762434,1
+"Peru","Malaria",0.043429885277,0.0896663319026,0
+"Peru","Measles",0,0.00088241223033,0
+"Peru","Meningitis",6.41401815341,8.29005231943,0
+"Peru","Neonatal disorders",205.160947543,165.779791388,1
+"Peru","Nutritional deficiencies",24.9596012997,7.58230618373,1
 "Peru","Other",NA,NA,0
-"Peru","Tetanus",0.0264756101183,0.061952807079,0
-"Peru","Tuberculosis",26.906130959,38.11494864,0
-"Peru","Whooping cough",0.454184556741,13.5168960652,0
-"Rwanda","All causes",22654.6506272,25123.3394252,0
+"Peru","Tetanus",0.0950217935917,0.061952807079,1
+"Peru","Tuberculosis",3.32533325033,1.10855232504,1
+"Peru","Whooping cough",0.652660500581,13.5168960652,0
+"Rwanda","All causes",3303.42146649,1347.81774208,1
 "Rwanda","DPT",NA,NA,0
-"Rwanda","Diarrheal diseases",2236.04524286,2426.66739361,0
-"Rwanda","Diphtheria",0.0164555967611,0.0880488896164,0
-"Rwanda","HIV/AIDS",419.367970735,173.848668715,1
-"Rwanda","Lower respiratory infections",3777.55545221,5116.78727277,0
-"Rwanda","Malaria",618.562315963,2967.99609247,0
-"Rwanda","Measles",74.8990439384,116.179560955,0
-"Rwanda","Meningitis",765.579923379,1675.31231459,0
-"Rwanda","Neonatal disorders",6142.04899552,7816.96275107,0
-"Rwanda","Nutritional deficiencies",1489.98893415,2757.26579597,0
+"Rwanda","Diarrheal diseases",239.503632797,130.185932366,1
+"Rwanda","Diphtheria",0.0705783284401,0.0880488896164,0
+"Rwanda","HIV/AIDS",107.514944872,9.32663911291,1
+"Rwanda","Lower respiratory infections",490.337568233,274.505572366,1
+"Rwanda","Malaria",252.966461301,159.227152256,1
+"Rwanda","Measles",90.3767010138,6.2328049178,1
+"Rwanda","Meningitis",71.8099653063,89.8772103067,0
+"Rwanda","Neonatal disorders",544.317655769,419.36467548,1
+"Rwanda","Nutritional deficiencies",172.888490541,147.921886359,1
 "Rwanda","Other",NA,NA,0
-"Rwanda","Tetanus",3.54506552241,9.33854813653,0
-"Rwanda","Tuberculosis",243.130802766,465.859218992,0
-"Rwanda","Whooping cough",1.07265994718,30.8249373051,0
-"Senegal","All causes",30001.5342697,31896.2681403,0
+"Rwanda","Tetanus",32.3251307992,9.33854813653,1
+"Rwanda","Tuberculosis",46.9092103126,24.9924307449,1
+"Rwanda","Whooping cough",2.58239267384,30.8249373051,0
+"Senegal","All causes",2411.4897476,1282.90053603,1
 "Senegal","DPT",NA,NA,0
-"Senegal","Diarrheal diseases",3207.57100825,5139.83991121,0
-"Senegal","Diphtheria",0.0252264023987,0.11671695223,0
-"Senegal","HIV/AIDS",40.3552195725,89.7854528425,0
-"Senegal","Lower respiratory infections",3233.5683249,4736.07574012,0
-"Senegal","Malaria",1919.64164451,2913.14392425,0
-"Senegal","Measles",243.051046376,430.022571027,0
-"Senegal","Meningitis",855.867183173,2918.23252288,0
-"Senegal","Neonatal disorders",8943.9140302,11107.4315674,0
-"Senegal","Nutritional deficiencies",833.678527235,1888.28046474,0
+"Senegal","Diarrheal diseases",325.054733971,206.729619534,1
+"Senegal","Diphtheria",0.136951025975,0.11671695223,1
+"Senegal","HIV/AIDS",5.89097972485,3.6112627682,1
+"Senegal","Lower respiratory infections",241.218996363,190.489811503,1
+"Senegal","Malaria",329.898304145,117.169628921,1
+"Senegal","Measles",33.9355734916,17.2959477407,1
+"Senegal","Meningitis",60.4557338371,117.374297564,0
+"Senegal","Neonatal disorders",535.708857446,446.752261084,1
+"Senegal","Nutritional deficiencies",63.0919185969,75.9485720943,0
 "Senegal","Other",NA,NA,0
-"Senegal","Tetanus",1.07515318985,4.59997813533,0
-"Senegal","Tuberculosis",108.600776762,339.632986328,0
-"Senegal","Whooping cough",1.65942915965,51.3821945152,0
+"Senegal","Tetanus",5.10370532263,4.59997813533,1
+"Senegal","Tuberculosis",9.68804691922,13.6603861711,0
+"Senegal","Whooping cough",2.34795823224,51.3821945152,0

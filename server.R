@@ -4,24 +4,24 @@ library(shiny);library(data.table); library(ggplot2); library(RColorBrewer); lib
 shinyServer(function(input, output) {
   fn.plot <- function(input) {
     ## Arguments
-    # cmetric <- "Rate"
-    # cage <- input$cage
-    # cmeasure <- "Deaths"
-    # cloc <- input$cloc
-    # start.year <- input$range[1]
-    # end.year <- input$range[2]
-    # ccause <- input$ccause
-    # bar <- input$bar
-
     cmetric <- "Rate"
-    cage <- "Under 5"
+    cage <- input$cage
     cmeasure <- "Deaths"
-    cloc <- "Rwanda"
-    start.year <- 2000
-    end.year <- 2015
-    ccause <- "All causes"
-    bar <- F
-    
+    cloc <- input$cloc
+    start.year <- input$range[1]
+    end.year <- input$range[2]
+    ccause <- input$ccause
+    bar <- input$bar
+
+    # cmetric <- "Rate"
+    # cage <- "Under 5"
+    # cmeasure <- "Deaths"
+    # cloc <- "Rwanda"
+    # start.year <- 2000
+    # end.year <- 2015
+    # ccause <- "All causes (per 1000 live births)"
+    # bar <- F
+
     
     all.plots <- T
     cause.plots <- T
@@ -31,6 +31,7 @@ shinyServer(function(input, output) {
     
     ## Paths
     data.dir <- "data/prepped/"
+    prob.path <- paste0(data.dir, "prob_death.csv")
     mort.path <- paste0(data.dir, "mort.csv")
     policy.path <- paste0(data.dir, "timeline.csv")
     ebi.path <- paste0(data.dir, "ebi.csv")
@@ -41,6 +42,7 @@ shinyServer(function(input, output) {
     ### Code
     ## Data prep
     # Read data
+    prob.dt <- fread(prob.path)[location == cloc & year %in% start.year:end.year]
     mort.dt <- fread(mort.path)[year %in% start.year:end.year]
     policy.dt <- fread(policy.path)[location == cloc & start_year %in% start.year:end.year & outlier == 0]
     ebi.dt <- fread(ebi.path)[!is.na(value) & year %in% start.year:(end.year + 1)]
@@ -95,6 +97,21 @@ shinyServer(function(input, output) {
     names(color) <- unique(subset.mort[cause != "All causes"]$cause)
     
     ## All-cause plot
+    if(ccause == "All causes (per 1000 live births)") {
+      plot.dt <- prob.dt[age == cage]
+      gg <- ggplot(data = plot.dt, aes(x = year, y = mean * 1000)) + 
+        geom_line() + 
+        geom_text(data = plot.dt[year %% 5 == 0], aes(label = round(mean * 1000), y = mean * 1000 + 10)) +
+        ylim(c(0, 1.2 * max(plot.dt$mean*1000))) +
+        xlab("Year") +
+        ylab("Deaths per 1000 live births") +
+        ggtitle(paste0(cage, " Mortality Rate in ", cloc)) +
+        theme_bw() +
+        theme(plot.title = element_text(hjust = 0.5))
+      print(gg)
+      
+    }
+    
     if(ccause == "All causes") {
       decline <- round(change.dt[cause == "All causes", change], 1)
       sig <- cast.dt[location == cloc & cause == "All causes", sig]
@@ -111,7 +128,7 @@ shinyServer(function(input, output) {
           geom_text(data = policy.dt, aes(x = start_year, y = policy.y, label = policy_name), size = 3, hjust = "left", nudge_x = 0.05)
       }
       # Format
-      gg <- gg + ggtitle(paste0(cage, " mortality in ", cloc, ":\n", abs(decline), "% ",ifelse(decline > 0, "decline", "increase"), " ", start.year, "-", end.year,  ifelse(sig == 1, "*", ""))) + ylab(paste(cmeasure, cmetric)) + xlab("Year") + labs(fill = "Cause") + theme_bw() + 
+      gg <- gg + ggtitle(paste0(cage, " mortality in ", cloc, ":\n", abs(decline), "% ",ifelse(decline > 0, "decline", "increase"), " ", start.year, "-", end.year,  ifelse(sig == 1, "*", ""))) + ylab(paste(cmeasure, cmetric, ifelse(cmetric == "Rate", " (per 100k)", ""))) + xlab("Year") + labs(fill = "Cause") + theme_bw() + 
         theme(text = element_text(size=15), legend.position = "bottom", plot.title = element_text(hjust = 0.5)) + expand_limits(y = 1.3 * max(subset.mort$val)) +
         scale_fill_manual(values = color) + guides(fill = guide_legend(reverse = T))
       if(sig == 1) {
@@ -122,7 +139,7 @@ shinyServer(function(input, output) {
     }
     
     ## Cause-specific plot
-    if(ccause != "All causes") {
+    if(!(grepl("All causes", ccause))) {
       max.val <- max(subset.mort[cause != "All causes"]$val)
       # Prep policy height
       if(nrow(subset.policy) > 0) {
