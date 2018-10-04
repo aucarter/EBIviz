@@ -85,6 +85,13 @@ setnames(melt.dpt, "Cname", "location")
 melt.dpt[, c("Category", "Indicator") := .("DPT", "DPT3 Vaccine")]
 ebi.dt <- rbind(ebi.dt, melt.dpt)
 
+# Pull Rotavirus
+rota.dt <- fread("http://apps.who.int/gho/athena/api/GHO/ROTAC?filter=COUNTRY:*&format=csv")
+
+dtp3.dt <- fread("http://apps.who.int/gho/athena/api/GHO/dptv?filter=COUNTRY:*&format=csv&YEAR=*")
+
+bcg.dt <- fread("http://apps.who.int/gho/athena/api/GHO/bcgv?filter=COUNTRY:*&format=csv&YEAR=*")
+
 write.csv(ebi.dt, ebi.out, row.names = F)
 
 ### Stats
