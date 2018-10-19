@@ -2,7 +2,7 @@
 
 library(ggplot2); library(data.table); library(ggrepel)
 
-dt <- fread("data/prepped/prob_death.csv")
+dt <- fread("data/prepped/prob_death.csv")[, per1000 := NULL]
 mort.dt <- fread("data/prepped/mort.csv")
 
 ## U5M line plot
