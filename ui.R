@@ -20,18 +20,18 @@ shinyUI(
     # Location
     selectInput(inputId = "cloc", 
                 label = "Location", 
-                choices = sort(unique(bound.dt$location)),
+                choices = sort(unique(dt$location)),
                 selected = "Nepal"),
     # Age
     selectInput(inputId = "cage", 
                 label = "Age group", 
-                choices = sort(unique(bound.dt$age)),
+                choices = sort(unique(dt$age)),
                 selected = "Under 5"),
     
     # Cause
     selectInput(inputId = "ccause", 
                 label = "Cause", 
-                choices = c("All causes (per 1000 live births)", sort(unique(bound.dt$cause))),
+                choices = c("All causes (per 1000 live births)", sort(unique(dt$cause))),
                 selected = "All causes (per 1000 live births)"),
     
     # Year range

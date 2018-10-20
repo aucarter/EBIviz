@@ -63,10 +63,9 @@ shinyServer(function(input, output) {
     start.val[order(start_val)]
     
     ## Table of improvement given uncertainty
-    bound2.dt <- rbind(mort.dt, dpt.hold, fill = T)
     yr1 <- start.year
     yr2 <- end.year
-    subset.mort <- bound2.dt[metric == "Rate" & age == "Under 5" & year %in% c(yr1, yr2) & measure == "Deaths", .(location, cause, year, val, upper, lower)]
+    subset.mort <- mort.dt[metric == "Rate" & age == "Under 5" & year %in% c(yr1, yr2) & measure == "Deaths", .(location, cause, year, val, upper, lower)]
     # mean.dt <- dcast(subset.mort, location + cause ~ year, value.var = "val")
     subset.mort[, cast_val := ifelse(year == start.year, lower, upper)]
     cast.dt <- dcast(subset.mort, location + cause ~ year, value.var = "cast_val")

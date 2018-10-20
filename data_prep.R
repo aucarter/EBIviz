@@ -86,7 +86,23 @@ melt.dpt[, c("Category", "Indicator") := .("DPT", "DPT3 Vaccine")]
 ebi.dt <- rbind(ebi.dt, melt.dpt)
 
 # Pull Rotavirus
+
+# Temporary for quickly adding rotavirus vaccine!!!!!!
+ebi.in <- fread(ebi.out)
+
+
 rota.dt <- fread("http://apps.who.int/gho/athena/api/GHO/ROTAC?filter=COUNTRY:*&format=csv")
+rota.dt[COUNTRY == "RWA", COUNTRY := "Rwanda"]
+
+# bend the format to match
+setnames(rota.dt, c("COUNTRY", "Display Value", "YEAR"), c("location", "value", "year"))
+rota.dt[, Category := "Diarrheal diseases"]
+rota.dt[, Indicator := "Rotavirus Vaccine"]
+rota.subset <- rota.dt[, c("location", "value", "year", "Category", "Indicator")]
+
+dt <- rbind(ebi.in, rota.subset)
+
+write.csv(dt, ebi.out, row.names = F)
 
 dtp3.dt <- fread("http://apps.who.int/gho/athena/api/GHO/dptv?filter=COUNTRY:*&format=csv&YEAR=*")
 
