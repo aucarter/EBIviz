@@ -6,11 +6,12 @@ library(data.table); library(RJSONIO); library(ggplot2); library(plotly)
 data.dir <- "data/raw/"
 data.path <- paste0(data.dir, "GBD16_results_all2.csv")
 ebi.path <- paste0("data/indicator_list.csv")
+who.path <- paste0("data/who_indicator_list.csv")
 dpt.path <- paste0(data.dir, "dpt3.csv")
 
 # Out
 out.dir <- "data/prepped/"
-mort.out <- paste0(out.dir, "mort.csv")
+mort.out <- paste0(out.dir, "mort16.csv")
 stat.out <- paste0(out.dir, "stat.csv")
 ebi.out <- paste0(out.dir, "ebi.csv")
 plot.dir <- "C:/Users/AustinC/OneDrive - bgC3/Documents/plots/U5M_plots/ebi_summary/"
@@ -20,6 +21,8 @@ dir.create(plot.dir, showWarnings = F)
 ## Cause-specific mortality
 # Read data
 dt <- fread(data.path)
+setnames(dt, c("cause_name", "age_name", "metric_name", "measure_name", "location_name"), 
+         c("cause", "age", "metric", "measure","location"))
 
 # Calculate other category
 all.dt <- copy(dt[cause == "All causes"])
@@ -85,8 +88,6 @@ setnames(melt.dpt, "Cname", "location")
 melt.dpt[, c("Category", "Indicator") := .("DPT", "DPT3 Vaccine")]
 ebi.dt <- rbind(ebi.dt, melt.dpt)
 
-# Pull Rotavirus
-
 # Temporary for quickly adding rotavirus vaccine!!!!!!
 ebi.in <- fread(ebi.out)
 
@@ -100,16 +101,15 @@ rota.dt[, Category := "Diarrheal diseases"]
 rota.dt[, Indicator := "Rotavirus Vaccine"]
 rota.subset <- rota.dt[, c("location", "value", "year", "Category", "Indicator")]
 
-dt <- rbind(ebi.in, rota.subset)
+who.indicators <- fread(who.path)
 
-write.csv(dt, ebi.out, row.names = F)
-
-dtp3.dt <- fread("http://apps.who.int/gho/athena/api/GHO/dptv?filter=COUNTRY:*&format=csv&YEAR=*")
-
-bcg.dt <- fread("http://apps.who.int/gho/athena/api/GHO/bcgv?filter=COUNTRY:*&format=csv&YEAR=*")
-
-write.csv(ebi.dt, ebi.out, row.names = F)
-
+who.dt <- fread(paste0("http://apps.who.int/gho/athena/api/GHO/", 
+                       paste(who.indicators$indicator, collapse = ","),
+                       "?filter=COUNTRY:*&format=csv&YEAR=*"))
+country.map <- data.table(
+  location = c("Rwanda", "Senegal", "Nepal", "Ethiopia", "Cambodia", "Peru", "Bangladesh"),
+  COUNTRY = c("RWA", "SEN", "NEP", "")
+)
 ### Stats
 # Change between 2000 and 2015
 start.year <- 2000

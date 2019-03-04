@@ -1,0 +1,7 @@
+﻿indicator,label,definition
+ROTAC,Rotavirus vaccine,Rotavirus vaccines completed dose (RotaC) immunization coverage among 1-year-olds (%)
+WHS4_100,DTP3 vaccine,Diphtheria tetanus toxoid and pertussis (DTP3) immunization coverage among 1-year-olds (%)
+WHS4_543,BCG vaccine,BCG immunization coverage among 1-year-olds (%)
+PCV3,PCV vaccine,Pneumoccocal conjugate vaccines (PCV3) immunization coverage among 1-year-olds (%)
+WHS4_129,Hib vaccine,Hib (Hib3) immunization coverage among 1-year-olds (%)
+WHS8_110,Measles vaccine,Measles-containing-vaccine first-dose (MCV1) immunization coverage among 1-year-olds (%)
